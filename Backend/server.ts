@@ -1,9 +1,9 @@
 import express from "express";
 
-const app = express ;
+const app = express() ;
 const port = 8000 ;
 
-app.get("/" , (req , res) => {
+app.get("/" , (_req , res) => {
     res.send(`We are listening from port ${port} `)
 })
 
