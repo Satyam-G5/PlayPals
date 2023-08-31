@@ -1,19 +1,113 @@
 import express from "express" 
 const router = express.Router() ;
 const pool = require("../Database/db")
+const bcrypt = require("bcryptjs"); // hashing
+const jwt = require("jsonwebtoken"); // sending JWT tokens 
 
+const secretKey = 'users_data-parents'; 
 router.post('/newuser', async (req, res) => {
     try {
-        const { name, address, phone_no, email, child_name, child_age, gender } = req.body;
+
+        const { name, address, phone_no, email, child_name, child_age, gender , password} = req.body;
+        
+        // hashing the password 
+        const salt = await bcrypt.genSalt(8);  // generating salt 
+        const hashpass = await bcrypt.hash(password, salt);  // generation of hash 
+
+        
         const newUser = await pool.query(
-            "INSERT INTO Parents (name, address, phone_no, email, child_name, child_age, gender) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-            [name, address, phone_no, email, child_name, child_age, gender]
+            "INSERT INTO Parents (name, address, phone_no, email, child_name, child_age, gender, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+            [name, address, phone_no, email, child_name, child_age, gender, hashpass]
         );
-        res.json(newUser.rows[0]);
+        // Generate a JWT token
+        const payload = { userId: newUser.rows[0].user_id };
+        const token = jwt.sign(payload, secretKey);
+
+        res.json({ user: newUser.rows[0], token }); // Send the user and token as a response
     } catch (error) {
         console.error('Error adding user:', error);
         res.status(500).json({ error: 'An error occurred while adding the user.' });
     }
 });
 
+router.post("/user_log" ,async (req, res) => {
+
+    try {
+        const {email , password} = req.body ;
+        // Find the user by email in the database
+        const user = await pool.query("SELECT * FROM Parents WHERE email = $1", [email]);
+
+        if (user.rows.length === 0) {
+            return res.status(401).json({ success: false, message: "Email not found" });
+        }
+        try {
+            // Compare the provided password with the hashed password from the database
+            // console.log('Hashpass from database:', user.rows[0].password);
+            const isPasswordMatch = await bcrypt.compare(password, user.rows[0].password);
+        
+            if (!isPasswordMatch) {
+                return res.status(401).json({ success: false, message: "Invalid password" });
+            }
+        
+            // If email and password match, generate a JWT token
+            const payload = { userId: user.rows[0].user_id };
+            const token = jwt.sign(payload, secretKey);
+        
+            res.json({ success: true, token }); 
+        } catch (error) {
+            console.error('Error comparing passwords:', error);
+            res.status(500).json({ success: false, message: 'An error occurred while comparing passwords.' });
+        }
+        
+
+    } catch (error) {
+        console.error('Error adding user:', error);
+        res.status(500).json({ error: 'An error occurred while adding the user.' });
+    }
+})
+
+router.get("/user_details", async (req, res) => {
+    try {
+        const token = req.header("Authorization");
+
+        if (!token) {
+            return res.status(401).json({ success: false, message: "Access denied. Token missing." });
+        }
+
+        try {
+            const decoded = jwt.verify(token, secretKey);
+
+            // Retrieve user details from the database based on the decoded user_id
+            const user = await pool.query("SELECT * FROM Parents WHERE user_id = $1", [decoded.userId]);
+
+            if (user.rows.length === 0) {
+                return res.status(404).json({ success: false, message: "User not found" });
+            }
+
+            res.json({ success: true, user: user.rows[0] }); // Send success and user details as response
+        } catch (error) {
+            return res.status(401).json({ success: false, message: "Access denied. Invalid token." });
+        }
+    } catch (error) {
+        console.error('Error retrieving user details:', error);
+        res.status(500).json({ success: false, message: 'An error occurred while retrieving user details.' });
+    }
+});
+
 module.exports = router;
+
+
+// {
+//     "user": {
+//       "user_id": 3,
+//       "name": "Krishna Yadav",
+//       "address": "Gokul , UP",
+//       "phone_no": 1234567890,
+//       "email": "krishna@gmail.com",
+//       "child_name": "Kiya",
+//       "child_age": 5,
+//       "gender": "Female",
+//       "password": "$2a$08$XCD4M.hT7MBbyPR0Ii7YJus3N0cLyCSiVq8emD3j5DOq9iqLMQiOa"
+//     },
+//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY5MzIzODMyNn0.NJFmHrzegNQnoEcjAdSn0Fu27R1g1leEvdv2Kh7GKK0"
+//   }

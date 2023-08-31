@@ -9,11 +9,12 @@ app.get("/" , (_req , res) => {
     res.send(`We are listening from port ${port} `)
 })
 
-app.use(express.json()) 
+app.use(express.json());
 
 //************ CREATING ROUTES ***************
 
 app.use("/" ,  require('./Routes/user')) // Adding Parents --- primary users 
+app.use("/" ,  require('./Routes/bsitters')) // Adding Bsitters --- primary users 
 
 
 

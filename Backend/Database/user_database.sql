@@ -8,7 +8,8 @@ CREATE TABLE Parents(
     email VARCHAR(50),
     child_name VARCHAR(30),
     child_age INT,
-    gender VARCHAR(7)
+    gender VARCHAR(7),
+    password VARCHAR(40)
 );
 
 CREATE TABLE Bsitters(
@@ -18,5 +19,6 @@ CREATE TABLE Bsitters(
     gender VARCHAR(7),
     phone_no INT ,
     exp_hrs INT ,
-    email VARCHAR(50)
+    email VARCHAR(50),
+    password VARCHAR(40)
 );

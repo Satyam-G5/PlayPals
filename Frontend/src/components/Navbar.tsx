@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar: React.FC= () => {
   return (
     <nav className="w-full h-20 bg-white fixed top-0 flex justify-between rounded-lg shadow-lg z-10">
-      <div className="text-3xl text-black font-bold mt-5 ml-3 ">ChildCare</div>
+      <div className="text-3xl text-black font-bold mt-5 ml-3 ">PlayPals</div>
       <div className="flex flex-row justify-end items-center mt-1 mr-2 md:hidden">
         <button
           className="text-xl text-gray-600 p-6 hover:cursor-pointer hover:text-gray-950 focus:outline-none"
