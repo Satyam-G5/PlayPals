@@ -13,6 +13,15 @@ export default defineConfig({
       },
       "/user_details" :{
         target: "http://localhost:8000"
+      },
+      "/newBsitter" :{
+        target: "http://localhost:8000"
+      },
+      "/bsitter_log" :{
+        target: "http://localhost:8000"
+      },
+      "/bsitter_details" :{
+        target: "http://localhost:8000"
       }
     }
   },

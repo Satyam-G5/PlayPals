@@ -21,14 +21,13 @@ interface AppProviderProps {
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
     interface userType {
-        address  : string; 
-        child_age : Number ;
-       child_name : string ; 
-        email : string ; 
-        gender : string ; 
-        name : string ; 
-        password : string ; 
-        phone_no : number ;
+        name : string ;
+         age : string ;
+          gender : string ; 
+          phone_no : string ;
+           exp_hrs : string ;
+           email  : string ;
+           password : string ;
     }
 
 
@@ -48,7 +47,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             try {
                 
 
-                const response = await fetch("user_details", {
+                const response = await fetch("bsitter_details", {
                     method: "GET",
                     headers: {
                         'content-type': 'application/json',
@@ -61,12 +60,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
                     console.log(user_details.user);
                     setNewuser(prevUser => ({
                         ...prevUser,
-                        address: user_details.user.address,
-                        child_age: user_details.user.child_age,
-                        child_name: user_details.user.child_name,
-                        email: user_details.user.email,
-                        gender: user_details.user.gender,
                         name: user_details.user.name,
+                        age: user_details.user.age,
+                        gender: user_details.user.gender,
+                        exp_hrs: user_details.user.exp_hrs,
+                        email: user_details.user.email,
                         password: user_details.user.password,
                         phone_no: user_details.user.phone_no
                     }));                               
