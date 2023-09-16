@@ -158,14 +158,14 @@ const SignIn: React.FC = () => {
                     style={{ background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)" }}>
                       <button
                             type="button"
-                            className="mt-8 right-4 text-white fixed inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                            className="mt-8 right-4 text-white fixed inline-block rounded border-2 border-danger p-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
                             data-te-ripple-init
                             data-te-ripple-color="light">
-                            <Link to={"/register_user"}>
+                            <Link to={"/BsignIn"}>
                               Member Login
                             </Link>
                           </button>
-                    <div className="px-4 py-6 mt- text-white md:mx-6 md:p-12">
+                    <div className="px-4 py-6 mt-44 text-white md:mx-6 md:p-12">
                       <h4 className="mb-6 text-xl font-semibold">
                         We are more than just a company
                       </h4>
@@ -181,7 +181,7 @@ const SignIn: React.FC = () => {
                             className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
                             data-te-ripple-init
                             data-te-ripple-color="light">
-                            <Link to={"/register_user"}>
+                            <Link to={"/register"}>
                               Join
                             </Link>
                           </button>

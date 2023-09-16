@@ -21,13 +21,10 @@ const Navbar: React.FC = () => {
           Dashboad
         </Link>
         <Link to="/book_bsitter" className="text-xl text-gray-600 p-6 hover:cursor-pointer hover:text-gray-950">
-          Baby Sitters
+          Book a Date
         </Link>
         <Link to="/guides" className="text-xl text-gray-600 p-6 hover:cursor-pointer hover:text-gray-950">
           Chat
-        </Link>
-        <Link to="/top-destination" className="text-xl text-gray-600 p-6 hover:cursor-pointer hover:text-gray-950">
-          Status
         </Link>
       </div>
 

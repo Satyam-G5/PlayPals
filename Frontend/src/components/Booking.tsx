@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Member_login : React.FC= () => {
+const Booking : React.FC= () => {
+    
   return (
     <div>
       
@@ -8,4 +9,4 @@ const Member_login : React.FC= () => {
   )
 }
 
-export default Member_login
+export default Booking

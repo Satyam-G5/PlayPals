@@ -9,15 +9,15 @@ const secretKey = 'users_data-bsitters';
 
 router.post('/newBsitter', async (req, res) => {
     try {
-        const { name, age , gender , phone_no, exp_hrs, email , password} = req.body;
+        const { name, age , gender , image , phone_no, exp_hrs, description , email , password} = req.body;
 
         // hashing the password 
         const salt = await bcrypt.genSalt(8);  // generating salt 
         const hashpass = await bcrypt.hash(password, salt);  // generation of hash
 
         const newBsitter = await pool.query(
-            "INSERT INTO Bsitters (name, age , gender , phone_no, exp_hrs, email, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-            [name, age , gender , phone_no, exp_hrs, email, hashpass]
+            "INSERT INTO Bsitters (name, age , gender, image , phone_no, exp_hrs, description , email, password) VALUES ($1, $2, $3, $4, $5, $6, $7 , $8, $9) RETURNING *",
+            [name, age , gender, image , phone_no, exp_hrs, description , email, hashpass]
         );
         const payload = { userId: newBsitter.rows[0].user_id };
         const token = jwt.sign(payload, secretKey);

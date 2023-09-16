@@ -4,7 +4,7 @@ import React, { createContext, useState, ReactNode, useEffect } from 'react';
 interface AppContextType {
     loginState: boolean | undefined;
     token: string | undefined;
-    newuser : any ;
+    newuser: any;
     changeLoginState: (login: boolean) => void;
     changeToken: (newtoken: string) => void;
     getuser_details: () => void;
@@ -21,13 +21,14 @@ interface AppProviderProps {
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
     interface userType {
-        name : string ;
-         age : string ;
-          gender : string ; 
-          phone_no : string ;
-           exp_hrs : string ;
-           email  : string ;
-           password : string ;
+        name: string;
+        age: string;
+        gender: string;
+        image: string;
+        phone_no: string;
+        exp_hrs: string;
+        email: string;
+        password: string;
     }
 
 
@@ -45,7 +46,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const getuser_details = async () => {
         if (token) {
             try {
-                
+
 
                 const response = await fetch("bsitter_details", {
                     method: "GET",
@@ -63,16 +64,17 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
                         name: user_details.user.name,
                         age: user_details.user.age,
                         gender: user_details.user.gender,
+                        image: user_details.user.image,
                         exp_hrs: user_details.user.exp_hrs,
                         email: user_details.user.email,
                         password: user_details.user.password,
                         phone_no: user_details.user.phone_no
-                    }));                               
+                    }));
                 }
                 else {
                     console.log("response not recieved ")
                 }
-                
+
             } catch (error) {
                 console.log("error Notice", error)
             }

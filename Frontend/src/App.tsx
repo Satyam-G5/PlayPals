@@ -6,7 +6,9 @@ import Dashboard from './components/Dashboard';
 import Register from './components/Register';
 import Navbar from './components/Navbar';
 import BSignIn from './components/BSignIn';
-import Member_login from './components/Member_login';
+import Bregister from './components/Bregister';
+import Members from './components/Members';
+import Booking from './components/Booking';
 
 import { AppProvider } from "./context/authcontext"
 
@@ -24,7 +26,9 @@ function App() {
               <Route path="/register_user" element={<><Register /></>} />
               <Route path="/dashboard" element={<><Navbar/><Dashboard /></>} />
               <Route path="/BsignIn" element={<><BSignIn/></>} />
-              <Route path="/Members" element={<><Member_login/></>} />
+              <Route path="/register" element={<><Bregister/></>} />
+              <Route path="/Members" element={<><Members/></>} />
+              <Route path="/book_bsitter" element={<><Navbar/><Booking/></>}/>
             </Routes>
           </div>
 

@@ -20,5 +20,16 @@ CREATE TABLE Bsitters(
     phone_no INT ,
     exp_hrs INT ,
     email VARCHAR(50),
-    password VARCHAR(40)
+    password VARCHAR(40),
+    description VARCHAR(300),
+    image BYTEA 
 );
+
+CREATE TABLE Appointments(
+    app_id SERIAL PRIMARY KEY ,
+    user_email VARCHAR(30) ,
+    bsitter_email VARCHAR(30),
+    date DATE ,
+    bsitter_approval BOOLEAN ,
+    hrs INT 
+)
