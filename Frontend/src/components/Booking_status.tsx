@@ -83,7 +83,7 @@ const BookingStatus: React.FC = () => {
 
     const handleBookingCompletion = async () => {
         try {
-            const response = await fetch('/delete_conver/'+b_id,{
+            const response = await fetch( "https://playpals.onrender.com" + '/delete_conver/' + b_id,{
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',

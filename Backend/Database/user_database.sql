@@ -2,14 +2,14 @@ CREATE DATABASE users_data ;
 
 CREATE TABLE Parents(
     user_id SERIAL PRIMARY KEY ,
-    name VARCHAR (30) ,
+    name VARCHAR (300) ,
     address VARCHAR(255) ,
     phone_no INT ,
-    email VARCHAR(50),
-    child_name VARCHAR(30),
+    email VARCHAR(500),
+    child_name VARCHAR(300),
     child_age INT,
     gender VARCHAR(7),
-    password VARCHAR(40)
+    password VARCHAR(400)
 );
 
 CREATE TABLE Bsitters(

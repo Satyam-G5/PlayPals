@@ -58,7 +58,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             try {
 
 
-                const response = await fetch( "https://playpals.onrender.com" + "bsitter_details", {
+                const response = await fetch( "https://playpals.onrender.com" + "/bsitter_details", {
                     method: "GET",
                     headers: {
                         'content-type': 'application/json',
