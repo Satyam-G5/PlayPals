@@ -11,7 +11,7 @@ const Register: React.FC = () => {
         phone_no: number,
         email: string,
         child_name: string,
-        child_age: string,
+        child_age: number,
         gender: string,
         password: string,
     }
@@ -22,7 +22,7 @@ const Register: React.FC = () => {
         phone_no: 0,
         email: '',
         child_name: '',
-        child_age: '',
+        child_age: 0,
         gender: '',
         password: '',
     });
