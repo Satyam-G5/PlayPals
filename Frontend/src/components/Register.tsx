@@ -31,7 +31,7 @@ const Register: React.FC = () => {
 
         const {name , address , phone_no , email ,child_name ,child_age , gender ,password} = formData
         try {
-            const response = await fetch("/newuser" , {
+            const response = await fetch( "https://playpals.onrender.com" + "/newuser" , {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'

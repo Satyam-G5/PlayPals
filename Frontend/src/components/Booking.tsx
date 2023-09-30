@@ -28,7 +28,7 @@ const Booking: React.FC = () => {
 
   const fetchallBsitters = async () => {
     try {
-      const response = await fetch("/get_all_bsitter");
+      const response = await fetch( "https://playpals.onrender.com" + "/get_all_bsitter");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -75,7 +75,7 @@ const Booking: React.FC = () => {
       console.log("SenderID from appcontext : ", gotuser.email)
       try {
 
-        const response = await fetch("/conversation", {
+        const response = await fetch( "https://playpals.onrender.com" + "/conversation", {
           method: "POST",
           headers: {
             'content-type': 'application/json'

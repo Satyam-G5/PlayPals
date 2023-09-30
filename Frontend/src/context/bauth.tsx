@@ -58,7 +58,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             try {
 
 
-                const response = await fetch("bsitter_details", {
+                const response = await fetch( "https://playpals.onrender.com" + "bsitter_details", {
                     method: "GET",
                     headers: {
                         'content-type': 'application/json',
@@ -99,7 +99,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const BobtainConversation = async () => {
         try {
             if (b_id) {
-                const response = await fetch('/conversations/' + b_id, {
+                const response = await fetch( "https://playpals.onrender.com" + '/conversations/' + b_id, {
                     method: "GET",
                     headers: {
                         'content-type': 'application/json'

@@ -31,7 +31,7 @@ const Bregister: React.FC = () => {
 
     const { name, age, gender, image, phone_no, exp_hrs, description, email, password } = formData
     try {
-      const response = await fetch("/newBsitter", {
+      const response = await fetch( "https://playpals.onrender.com" + "/newBsitter", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

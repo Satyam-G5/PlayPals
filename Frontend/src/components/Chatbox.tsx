@@ -87,7 +87,7 @@ const Chatbox: React.FC = () => {
         console.log("the newCID -> ", newCID)
         if (newCID) {
             try {
-                const response = await fetch("/messages/" + newCID, {
+                const response = await fetch( "https://playpals.onrender.com" + "/messages/" + newCID, {
                     method: "GET",
                     headers: {
                         'content-type': 'application/json'
@@ -125,7 +125,7 @@ const Chatbox: React.FC = () => {
         if (newCID) {
 
             try {
-                const response = await fetch("/message", {
+                const response = await fetch( "https://playpals.onrender.com" + "/message", {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json',

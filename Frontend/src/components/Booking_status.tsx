@@ -52,7 +52,7 @@ const BookingStatus: React.FC = () => {
             console.log("SenderId is present : " , senderId);
             
             
-            const response = await fetch("/get_user/"+senderId,{
+            const response = await fetch( "https://playpals.onrender.com" + "/get_user/"+senderId,{
                 method: "GET",
                 headers: {
                     'content-type': 'application/json',

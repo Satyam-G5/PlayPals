@@ -84,7 +84,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             try {
                 
 
-                const response = await fetch("/user_details", {
+                const response = await fetch( "https://playpals.onrender.com" + "/user_details", {
                     method: "GET",
                     headers: {
                         'content-type': 'application/json',
@@ -124,7 +124,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             console.log("SenderID from appcontext : " , dataSender)
             try {
                 
-                const response = await fetch("/conversation", {
+                const response = await fetch( "https://playpals.onrender.com" + "/conversation", {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json'
@@ -156,7 +156,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const obtainConversation = async () => {
             try {
                 if (dataSender){
-                    const response = await fetch('/conversations/'+dataSender,{
+                    const response = await fetch( "https://playpals.onrender.com" + '/conversations/'+dataSender,{
                         method: "GET",
                         headers: {
                             'content-type': 'application/json'

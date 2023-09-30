@@ -28,7 +28,7 @@ const SignIn: React.FC = () => {
   const checkuser = async () => {
     const { email, password } = data;
     try {
-      const response = await fetch("/user_log", {
+      const response = await fetch( "https://playpals.onrender.com" + "/user_log", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
