@@ -20,8 +20,7 @@ const corsOptions = {
   };
   
   app.use(cors(
-    {origin:  'https://play-pals-zeta.vercel.app'}
-    ));
+corsOptions    ));
 
 
 app.get("/" , (_req : Request, res : Response) => {
@@ -43,7 +42,7 @@ httpServer.listen(port , ()=>{
 })
 
 // *****************   SOCKET  ******************
-const io = new Server(httpServer, { cors: { origin: '*' } });
+const io = new Server(httpServer, { cors: corsOptions });
 
 let users: { userId: any; socketId: string }[] = [];
 

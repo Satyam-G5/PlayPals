@@ -48,7 +48,7 @@ const Chatbox: React.FC = () => {
 
     useEffect(() => {
         // Initialize the socket connection
-        const socketInstance = io('http://localhost:8000');
+        const socketInstance = io('https://playpals.onrender.com');
         setSocket(socketInstance);
 
         return () => {
