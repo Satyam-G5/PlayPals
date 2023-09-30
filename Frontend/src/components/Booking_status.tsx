@@ -15,14 +15,14 @@ const BookingStatus: React.FC = () => {
 
     const [senderId, setSenderId] = useState<string | null>(null);
     const [bookingData, setBookingData] = useState<BookingData | undefined>(undefined);
-    const [bid , setBid] = useState<string>()
+    // const [bid , setBid] = useState<string>()
 
-    useEffect(()=>{
-      const b_id = localStorage.getItem('b_id')
-       if(b_id !== null) {
-        setBid(b_id)
-       }
-    }, [])
+    const b_id = localStorage.getItem('b_id')
+    // useEffect(()=>{
+    //    if(b_id !== null) {
+    //     setBid(b_id)
+    //    }
+    // }, [])
 
     useEffect(() =>{
         localStorage.setItem('P_name' , JSON.stringify(bookingData?.name))
@@ -83,7 +83,7 @@ const BookingStatus: React.FC = () => {
 
     const handleBookingCompletion = async () => {
         try {
-            const response = await fetch('/delete_conver/'+bid,{
+            const response = await fetch('/delete_conver/'+b_id,{
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',
