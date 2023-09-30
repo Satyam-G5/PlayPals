@@ -14,7 +14,7 @@ dotenv.config()
 const dblocal = `postgresql://${process.env.PGLOCAL_USER}:${process.env.PGLOCAL_PASSWORD}@${process.env.PGLOCAL_HOST}:${process.env.PGLOCAL_PORT}/${process.env.PGLOCAL_DATABASE}`
  
 const pool = new Pool({
-    connectionString : process.env.NODE === "production" ? process.env.POSTGRES_URL  : dblocal, 
+    connectionString : process.env.NODE_ENV === "production" ? process.env.POSTGRES_URL  : dblocal, 
     ssl : {
       rejectUnauthorized : false  
     }
