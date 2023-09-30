@@ -65,7 +65,7 @@ router.delete("/delete_conver/:UserID", async (req: Request, res: Response) => {
         console.log("No rows deleted");
         return res.status(404).json({ success: false, message: "No matching conversation rows found for deletion." });
       }
-  
+      
       console.log(`Deleted ${deleteResult.rowCount} rows`);
   
       res.status(200).json({ success: true, message: "Conversation rows deleted successfully." });
