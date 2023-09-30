@@ -19,7 +19,9 @@ const corsOptions = {
     methods: ['GET', 'POST'], // Add other methods you need
   };
   
-  app.use(cors(corsOptions));
+  app.use(cors(
+    {origin:  'https://play-pals-zeta.vercel.app/'}
+    ));
 
 
 app.get("/" , (_req : Request, res : Response) => {
