@@ -22,6 +22,30 @@ export default defineConfig({
       },
       "/bsitter_details" :{
         target: "http://localhost:8000"
+      },
+      "/conversation" :{
+        target: "http://localhost:8000"
+      },
+      "/conversations" :{
+        target: "http://localhost:8000"
+      },
+      "/get_all_bsitter" :{
+        target: "http://localhost:8000"
+      },
+      "/message" :{
+        target: "http://localhost:8000"
+      },
+      "/messages" :{
+        target: "http://localhost:8000"
+      },
+      "/get_user" :{
+        target: "http://localhost:8000"
+      },
+      "/get_bsitter" :{
+        target: "http://localhost:8000"
+      },
+      "//delete_conver" :{
+        target: "http://localhost:8000"
       }
     }
   },

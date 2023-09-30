@@ -14,22 +14,28 @@ CREATE TABLE Parents(
 
 CREATE TABLE Bsitters(
     B_id SERIAL PRIMARY KEY ,
-    name VARCHAR(30) ,
+    name VARCHAR(300) ,
     age INT,
     gender VARCHAR(7),
     phone_no INT ,
     exp_hrs INT ,
-    email VARCHAR(50),
-    password VARCHAR(40),
-    description VARCHAR(300),
-    image BYTEA 
+    email VARCHAR(500),
+    password VARCHAR(4000),
+    description VARCHAR(3000),
+    image VARCHAR (65530)
 );
 
-CREATE TABLE Appointments(
-    app_id SERIAL PRIMARY KEY ,
-    user_email VARCHAR(30) ,
-    bsitter_email VARCHAR(30),
-    date DATE ,
-    bsitter_approval BOOLEAN ,
-    hrs INT 
-)
+CREATE TABLE Messages(
+    messageID SERIAL PRIMARY KEY ,
+    consversationID INT ,
+    senderID VARCHAR(500)  ,
+    receiverID VARCHAR(500),
+    MessageString VARCHAR(500)
+);
+
+CREATE TABLE Conversation(
+    consversationID SERIAL PRIMARY KEY ,
+    SenderID VARCHAR(255) ,
+    RecieverID VARCHAR(255), 
+);
+

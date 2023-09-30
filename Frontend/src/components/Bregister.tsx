@@ -65,23 +65,24 @@ const Bregister: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<any>) => {
     const { name, value, files } = e.target;
-
+  
     if (name === "image" && files && files.length > 0) {
       const file = files[0];
       const reader = new FileReader();
-
+      reader.readAsDataURL(file);
+  
       reader.onload = () => {
         setFormData((prevData: any) => ({
           ...prevData,
-          image: reader.result,
+          image: reader.result, 
         }));
       };
-
-      reader.readAsDataURL(file);
+  
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }
+    };
   };
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,7 +97,7 @@ const Bregister: React.FC = () => {
       <div className=" w-md bg-white p-8 rounded-md shadow-md">
         <h2 className="text-2xl text-center font-bold mb-10">WELCOME TO PLAYPALS</h2>
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 gap-x-24 gap-y-12 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-12 mt-12">
             <div className='flex flex-row justify-around'>
               <label htmlFor="name" className="block text-sm font-medium mt-2">
                 Name
@@ -125,7 +126,7 @@ const Bregister: React.FC = () => {
             </div>
             <div className="flex flex-row justify-around ">
               <label htmlFor="exp_hrs" className="block text-sm font-medium mt-2">
-                Experience (hrs)
+                Attend Cost (max-$20)
               </label>
               <input
                 type="text"
@@ -156,6 +157,7 @@ const Bregister: React.FC = () => {
               <label htmlFor="file" id='imageupload' className="block text-sm font-medium mt-2 hover:cursor-pointer">
                 Upload Image
               </label>
+              {}
               <input
                 id="image"
                 name="image"

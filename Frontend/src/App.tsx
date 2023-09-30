@@ -9,8 +9,13 @@ import BSignIn from './components/BSignIn';
 import Bregister from './components/Bregister';
 import Members from './components/Members';
 import Booking from './components/Booking';
+import Chatbox from './components/Chatbox';
+import Selection from './components/Selection';
+import BookingStatus from './components/Booking_status';
+import B_Nav from './components/B_Nav';
 
-import { AppProvider } from "./context/authcontext"
+import { AppProvider as UserAppProvider } from "./context/authcontext"
+import { AppProvider as BAuthAppProvider  } from "./context/bauth"
 
 
 function App() {
@@ -18,7 +23,8 @@ function App() {
 
   return (
     <>
-      <AppProvider>
+       <UserAppProvider>
+        <BAuthAppProvider>
         <Router>
           <div className='w-screen'>
             <Routes>
@@ -27,13 +33,18 @@ function App() {
               <Route path="/dashboard" element={<><Navbar/><Dashboard /></>} />
               <Route path="/BsignIn" element={<><BSignIn/></>} />
               <Route path="/register" element={<><Bregister/></>} />
-              <Route path="/Members" element={<><Members/></>} />
+              <Route path="/Members" element={<><B_Nav/><Members/></>} />
               <Route path="/book_bsitter" element={<><Navbar/><Booking/></>}/>
+              <Route path="/chat" element={<><Navbar/><Chatbox/></>}/>
+              <Route path="/Bchat" element={<><B_Nav/><Chatbox/></>}/>
+              <Route path="/booked" element={<><Navbar/><Selection/></>}/>
+              <Route path="/booked_status" element={<><B_Nav/><BookingStatus/></>}/>
             </Routes>
           </div>
 
         </Router>
-      </AppProvider>
+        </BAuthAppProvider>
+      </UserAppProvider>
     </>
   )
 }

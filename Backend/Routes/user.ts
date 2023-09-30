@@ -1,10 +1,11 @@
-import express from "express" 
+import { log } from 'console';
+import express, { Express, Request, Response } from 'express';
 const router = express.Router() ;
 const pool = require("../Database/db")
 const bcrypt = require("bcryptjs"); // hashing
 const jwt = require("jsonwebtoken"); // sending JWT tokens 
 
-const secretKey = 'users_data-parents'; 
+const secretKey = process.env.JWT_SECRET_PARENT; 
 router.post('/newuser', async (req, res) => {
     try {
 
@@ -77,20 +78,37 @@ router.get("/user_details", async (req, res) => {
         try {
             const decoded = jwt.verify(token, secretKey);
 
-            // Retrieve user details from the database based on the decoded user_id
             const user = await pool.query("SELECT * FROM Parents WHERE user_id = $1", [decoded.userId]);
 
             if (user.rows.length === 0) {
                 return res.status(404).json({ success: false, message: "User not found" });
-            }
+            } 
 
-            res.json({ success: true, user: user.rows[0] }); // Send success and user details as response
+            res.json({ success: true, user: user.rows[0] });
         } catch (error) {
             return res.status(401).json({ success: false, message: "Access denied. Invalid token." });
         }
-    } catch (error) {
-        console.error('Error retrieving user details:', error);
+    } catch (error) { 
+        console.error('Error retrieving user details:', error); 
         res.status(500).json({ success: false, message: 'An error occurred while retrieving user details.' });
+    }
+});
+router.get("/get_user/:UserID", async (req, res) => {
+    const UserID: string = req.params.UserID;
+    try {
+        if (!UserID) {
+            return res.status(404).json({ success: false, message: "User ID not found." });
+        }
+        const all_employee = await pool.query("SELECT * FROM Parents WHERE email = $1", [UserID]);
+
+        if (all_employee.rows.length === 0) {
+            return res.status(404).json({ success: false, message: "No user found with that ID." });
+        }
+
+        res.status(200).json({ success: true, all_employee: all_employee.rows[0] });
+        console.log("Email data provided:", all_employee.rows[0]);
+    } catch (error) {
+        return res.status(500).json({ success: false, message: "An error occurred while fetching user data." });
     }
 });
 

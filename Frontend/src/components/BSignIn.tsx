@@ -51,7 +51,7 @@ const BSignIn: React.FC = () => {
                 //     return null; // or render a loading/error message
                 // }
                 appContext?.changeLoginState(login_success)
-                appContext?.changeToken(newtoken)
+                appContext?.changeBtoken(newtoken)
                 navigator("/Members");
             }
             else {

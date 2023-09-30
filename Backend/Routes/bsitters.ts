@@ -3,9 +3,10 @@ const router = express.Router()
 const pool = require("../Database/db")
 const bcrypt = require("bcryptjs"); // hashing
 const jwt = require("jsonwebtoken"); // sending JWT tokens 
-const secretKey = 'users_data-bsitters'; 
 
+const secretKey = process.env.JWT_SECRET_BSITTER;  
 
+ 
 
 router.post('/newBsitter', async (req, res) => {
     try {
@@ -20,7 +21,7 @@ router.post('/newBsitter', async (req, res) => {
             [name, age , gender, image , phone_no, exp_hrs, description , email, hashpass]
         );
         const payload = { userId: newBsitter.rows[0].user_id };
-        const token = jwt.sign(payload, secretKey);
+        const token = jwt.sign(payload, secretKey); 
 
         res.json({user : newBsitter.rows[0] , token});
     } catch (error) {
@@ -87,6 +88,30 @@ router.get("/bsitter_details", async (req, res) => {
     } catch (error) {
         console.error('Error retrieving user details:', error);
         res.status(500).json({ success: false, message: 'An error occurred while retrieving user details.' });
+    }
+});
+
+router.get("/get_all_bsitter", async (req, res) => {
+   
+        try {
+
+        const all_employee = await pool.query("SELECT * FROM Bsitters");
+        res.status(200).json({success : true , all_employee_details : all_employee.rows})
+          
+        } catch (error) {
+            return res.status(401).json({ success: false, message: "All b_sitters were not fetched " });
+        }
+});
+
+router.get("/get_bsitter/:UserID", async (req, res) => {
+    try {
+        const UserID : string = req.params.UserID ;
+
+    const all_employee = await pool.query("SELECT * FROM Bsitters WHERE email = $1 " , [UserID]); 
+    res.status(200).json({success : true , all_employee_details : all_employee.rows})
+      
+    } catch (error) {
+        return res.status(401).json({ success: false, message: "B_sitter with ID not fetched " });
     }
 });
 
