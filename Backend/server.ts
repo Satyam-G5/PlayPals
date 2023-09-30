@@ -15,12 +15,12 @@ const httpServer = createServer(app);
 const port = 8000 ;
 
 const corsOptions = {
-    origin: 'https://play-pals-zeta.vercel.app/', // Allow requests from your client app
+    origin: 'https://play-pals-zeta.vercel.app', // Allow requests from your client app
     methods: ['GET', 'POST'], // Add other methods you need
   };
   
   app.use(cors(
-    {origin:  'https://play-pals-zeta.vercel.app/'}
+    {origin:  'https://play-pals-zeta.vercel.app'}
     ));
 
 
