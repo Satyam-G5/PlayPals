@@ -53,7 +53,6 @@ const SignIn: React.FC = () => {
         }
          appContext.changeLoginState(login_success)
          appContext.changeToken(newtoken)
-        
         navigator("/dashboard");
       } 
       else {
