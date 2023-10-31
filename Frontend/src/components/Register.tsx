@@ -82,7 +82,7 @@ const Register: React.FC = () => {
             <div className=" w-md bg-white p-8 rounded-md shadow-md">
                 <h2 className="text-2xl text-center font-semibold mb-10">Welcome to PLAYPALS</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-2 gap-x-24 gap-y-12 mt-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-12 mt-12">
                         <div className='flex flex-row justify-around'>
                             <label htmlFor="name" className="block text-sm font-medium mt-2">
                                 Name
