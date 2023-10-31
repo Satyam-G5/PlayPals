@@ -1,6 +1,4 @@
 # ChildCare
-Personal Project 
-# ChildCare
 # PlayPals Child Care Platform Readme
 
 Welcome to the PlayPals repository, a comprehensive child care platform built using the PERN stack! PlayPals is designed to meet all your child care needs and offers real-time chatting features for parents, caregivers, and administrators.
